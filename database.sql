@@ -1,4 +1,4 @@
-create database if not exists bookstore;
+﻿create database if not exists bookstore;
 use bookstore;
 
 drop table if exists users;
@@ -39,8 +39,12 @@ create table if not exists books
 	bt_id int(8) not null references booktypes(bt_id),
 	b_image varchar(50) not null,
 	b_stock int(6) not null,
-	b_content varchar(2000)
+	b_content varchar(2000),
+	b_regdt timestamp default current_timestamp,
+	b_sales int(10) default 0
 )auto_increment=100001;
+
+
 insert into books(b_isbn,b_name,b_author,b_publisher,b_price,bt_id,b_image,b_stock,b_content)
 values ('9787302517597','java从入门到精通','张三','清华大学',139.6,1000001,'images/book/java.jpg','2000','入门到入土，包教包会'),
 ('9787302274629','计算机网络(第5版)','(美)特南鲍姆 韦瑟罗尔','清华大学',89.5,1000001,'images/book/web.jpg',10000,'考研必考,可以用电脑控制挖掘机炒菜'),
@@ -51,18 +55,31 @@ drop table if exists orders;
 create table if not exists orders
 (
 	o_id int(4) primary key auto_increment,
-	u_name int(8) not null references users(u_name),
+	o_isbn varchar(13) not null,
 	o_addr varchar(100) not null,
 	o_date timestamp default current_timestamp,
 	o_state int(1) not null default 0,
-	o_mark varchar(50)
+	o_mark varchar(50),
+	u_name varchar(8) not null references users(u_name)
 );
+
+
+drop table if exists cart;
+create table if not exists cart
+(
+	c_id int(6) primary key auto_increment,
+	u_name varchar(8) not null references users(u_name),
+	b_id int(8) not null references books(b_id),
+	c_number int(3) not null
+);
+
+
 
 drop table if exists orderdetails;
 create table if not exists orderdetails
 (
-	od_id int(8) primary key auto_increment,
 	od_number int(3) not null,
-	o_id int(4) not null references orders(o_id),
-	b_id int(8) not null references books(b_id)
+	o_id int(4) references orders(o_id) ,
+	b_id int(8) references books(b_id),
+	primary key(o_id,b_id)
 );
