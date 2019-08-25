@@ -32,15 +32,15 @@
 	o_addr     	| varchar(100)		收货地址
 	o_date   	| timestamp			日期
 	o_mark   	| varchar(50)		备注
-	u_name		| varchar(8)
+	u_name		| varchar(8)		订单所属用户
 	o_state		| int(1)			状态
     
 	
 	购物车
-	c_id
-	u_name
-	b_id
-	b_number
+	c_id		| int(6)			购物项id
+	u_name		| varchar(8)		购物车所属用户
+	b_id		| int(8)			图书id	
+	b_number	| int(3)			购物项数量
 	
 	
     订单明细表[orderdetails]
