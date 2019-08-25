@@ -46,9 +46,9 @@ create table if not exists books
 
 
 insert into books(b_isbn,b_name,b_author,b_publisher,b_price,bt_id,b_image,b_stock,b_content)
-values ('9787302517597','java从入门到精通','张三','清华大学',139.6,1000001,'images/book/java.jpg','2000','入门到入土，包教包会'),
-('9787302274629','计算机网络(第5版)','(美)特南鲍姆 韦瑟罗尔','清华大学',89.5,1000001,'images/book/web.jpg',10000,'考研必考,可以用电脑控制挖掘机炒菜'),
-('9787106850210','TCP/IP详解卷1原书第2版','李四','机械工业',242,1000001,'images/book/tcpip.jpg',10000,'别看了了，你要是能学会就有鬼了');
+values ('9787302517597','java从入门到精通','张三','清华大学',139.6,1000001,'images/book/book_01.gif','2000','入门到入土，包教包会'),
+('9787302274629','计算机网络(第5版)','(美)特南鲍姆 韦瑟罗尔','清华大学',89.5,1000001,'images/book/book_02.gif',10000,'考研必考,可以用电脑控制挖掘机炒菜'),
+('9787106850210','TCP/IP详解卷1原书第2版','李四','机械工业',242,1000001,'images/book/book_03.gif',10000,'别看了了，你要是能学会就有鬼了');
 
 
 drop table if exists orders;
