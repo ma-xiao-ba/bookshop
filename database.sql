@@ -79,7 +79,7 @@ drop table if exists orderdetails;
 create table if not exists orderdetails
 (
 	od_number int(3) not null,
-	o_id int(4) references orders(o_id) ,
+	o_isbn varchar(13) references orders(o_isbn) ,
 	b_id int(8) references books(b_id),
-	primary key(o_id,b_id)
+	primary key(o_isbn,b_id)
 );

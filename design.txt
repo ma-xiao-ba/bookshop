@@ -45,7 +45,7 @@
 	
     订单明细表[orderdetails]
 	od_number	|int(3)				购物项数量
-	o_id		|int(4)				购物项所属订单
+	o_isbn		|varchar(13)		购物项所属订单
 	b_id		|int(8)				购物项所属图书
 	
 	
