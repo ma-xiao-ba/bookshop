@@ -23,8 +23,7 @@ create table if not exists booktypes
 	bt_id int(4) primary key auto_increment,
 	bt_name varchar(50) not null unique
 )auto_increment=1000001;
-insert into booktypes(bt_name)
-values('少儿'),('军事'),('IT');
+insert into booktypes(bt_name) values('文学著作'),('画集'),('人物传记'),('计算机/网络');
 
 
 drop table if exists books;
@@ -63,7 +62,6 @@ create table if not exists orders
 	u_name varchar(8) not null references users(u_name)
 );
 
-
 drop table if exists cart;
 create table if not exists cart
 (
@@ -72,8 +70,6 @@ create table if not exists cart
 	b_id int(8) not null references books(b_id),
 	c_number int(3) not null
 );
-
-
 
 drop table if exists orderdetails;
 create table if not exists orderdetails

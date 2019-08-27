@@ -37,100 +37,6 @@
 		 rel='stylesheet' type='text/css'>
 		<script src="js/jquery.easing.min.js"></script>
 
-
-
-
-
-		<script type="text/javascript" src="js/Popt.js"></script>
-		<script type="text/javascript" src="js/city.json.js"></script>
-		<script type="text/javascript" src="js/citySet.js"></script>
-
-		<style type="text/css">
-			._citys {
-				width: 450px;
-				display: inline-block;
-				border: 2px solid #eee;
-				padding: 5px;
-				position: relative;
-			}
-
-			._citys span {
-				color: #05920a;
-				height: 15px;
-				width: 15px;
-				line-height: 15px;
-				text-align: center;
-				border-radius: 3px;
-				position: absolute;
-				right: 10px;
-				top: 10px;
-				border: 1px solid #05920a;
-				cursor: pointer;
-			}
-
-			._citys0 {
-				width: 95%;
-				height: 34px;
-				line-height: 34px;
-				display: inline-block;
-				border-bottom: 2px solid #05920a;
-				padding: 0px 5px;
-				font-size: 14px;
-				font-weight: bold;
-				margin-left: 6px;
-			}
-
-			._citys0 li {
-				display: inline-block;
-				line-height: 34px;
-				font-size: 15px;
-				color: #888;
-				width: 80px;
-				text-align: center;
-				cursor: pointer;
-			}
-
-			._citys1 {
-				width: 100%;
-				display: inline-block;
-				padding: 10px 0;
-			}
-
-			._citys1 a {
-				width: 83px;
-				height: 35px;
-				display: inline-block;
-				background-color: #f5f5f5;
-				color: #666;
-				margin-left: 6px;
-				margin-top: 3px;
-				line-height: 35px;
-				text-align: center;
-				cursor: pointer;
-				font-size: 12px;
-				border-radius: 5px;
-				overflow: hidden;
-			}
-
-			._citys1 a:hover {
-				color: #fff;
-				background-color: #05920a;
-			}
-
-			.AreaS {
-				background-color: #05920a !important;
-				color: #fff !important;
-			}
-		</style>
-
-
-
-
-
-
-
-
-
 	</head>
 	<body>
 		<!-- header-bot -->
@@ -140,28 +46,9 @@
 					<h1><a href="index.html"><img src="images/logo3.jpg"></a></h1>
 				</div>
 				<div class="col-md-6 header-middle">
-					<form>
-						<div class="search">
-							<input type="search" value="查找" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '查找';}"
-							 required="">
-						</div>
-						<div class="section_room">
-							<select id="country" onChange="change_country(this.value)" class="frm-field required">
-								<option value="null">所有分类</option>
-								<option value="null">少儿</option>
-								<option value="AX">IT</option>
-								<option value="AX">教育</option>
-								<option value="AX">经济管理</option>
-								<option value="AX">体育</option>
-							</select>
-						</div>
-						<div class="sear-sub">
-							<input type="submit" value=" ">
-						</div>
-						<div class="clearfix"></div>
-					</form>
+					
 				</div>
-				<div class="col-md-3 header-right footer-bottom">
+				<div class="col-md-6 header-right footer-bottom">
 					<ul>
 						<li><a href="#" class="use1" data-toggle="modal" data-target="#myModal4"><span>Login</span></a></li>
 					</ul>
@@ -233,8 +120,8 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>色情</td>
-									<td><button type="button">修改</button></td>
+									<td >色情</td>
+									<td><button class="btn btn-warning">修改</button></td>
 								</tr>
 							</tbody>
 						</table>
@@ -242,117 +129,5 @@
 				</div>
 			</div>
 		</div>
-		<!-- //图书管理表格 -->
-
-
-
-
-		<table id="ordermanage" style="display: none;" class="timetable_sub">
-			<thead>
-				<tr>
-					<th>操作</th>
-					<th>订单编号</th>
-					<th>下单时间</th>
-					<th>总价格</th>
-					<th>书名</th>
-					<th>图片</th>
-					<th>单价</th>
-					<th>数量</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>色情</td>
-					<td>色情</td>
-					<td>色情</td>
-					<td>色情</td>
-					<td>色情</td>
-					<td><img src="images/book/book_01.gif"/> </td>
-					<td><span>￥</span>500</td>
-					<td><button type="button">修改</button></td>
-				</tr>
-			</tbody>
-		</table>
-
-
-		<!-- 版权 -->
-		<div class="footer">
-			<div class="container">
-				<p class="copy-right">Copyright &copy; 2019. IMU All rights reserved.</p>
-			</div>
-		</div>
-		<!-- //版权 -->
-
-
-
-		<!-- 登录 -->
-		<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content modal-info">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body modal-spa">
-						<div class="login-grids">
-							<div class="login">
-								<div class="login-bottom">
-									<h3>注册</h3>
-									<form>
-										<div class="sign-up">
-											<h4>用户名:</h4>
-											<input type="text" value="用户名" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '用户名';}"
-											 required="">
-										</div>
-										<div class="sign-up">
-											<h4>密码 :</h4>
-											<input type="password" value="Password" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}"
-											 required="">
-
-										</div>
-										<div class="sign-up">
-											<h4>Re-type Password :</h4>
-											<input type="password" value="Password" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}"
-											 required="">
-
-										</div>
-										<div class="sign-up">
-											<input type="submit" value="注册">
-										</div>
-
-									</form>
-								</div>
-								<div class="login-right">
-									<h3>登录</h3>
-									<form>
-										<div class="sign-in">
-											<h4>用户名 :</h4>
-											<input type="text" value="账号" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '用户名';}"
-											 required="">
-										</div>
-										<div class="sign-in">
-											<h4>密码 :</h4>
-											<input type="password" value="Password" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}"
-											 required="">
-											<a href="#">忘记密码?</a>
-										</div>
-										<div class="single-bottom">
-											<input type="checkbox" id="brand" value="">
-											<label for="brand"><span></span>记住我.</label>
-										</div>
-										<div class="sign-in">
-											<input type="submit" value="登录">
-										</div>
-									</form>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- //登录 -->
-
-
 	</body>
 </html>
