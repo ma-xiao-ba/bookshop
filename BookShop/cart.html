@@ -53,9 +53,7 @@
 		
 	</head>
 	<body>
-	
 		<div class="headerpage"> </div>
-		
 		<!-- 购物车 -->
 		<div class="checkout">
 			<div class="container">
@@ -94,23 +92,54 @@
 								<div class="rem">
 									<div class="close1"> </div>
 								</div>
+							</td>
+						</tr>
+						<tr class="rem2">
+							<td>
+								<div class="ckbox">
+									<input id="F_IsMenu" name="F_IsMenu" type="checkbox">
+								</div>
+							</td>
+							<td class="invert-image"><a href="single.html"><img src="images/book/book_9.jpg" alt=" " class="img-responsive" /></a></td>
+							<td class="invert">
+								<div class="quantity">
+									<div class="quantity-select">
+										<div class="entry value-minus" >&nbsp;</div>
+										<div class="entry value" ><span>1</span></div>
+										<div class="entry value-plus active" onclick="sub(this)">&nbsp;</div>
+									</div>
+								</div>
+							</td>
+							<td class="invert">Hand Bag</td>
+							<td class="invert">$45.99</td>
+							<td class="invert">
+								<div class="rem">
+									<div class="close1"> </div>
+								</div>
 								<script>
-									$(document).ready(function(c) {
-										$('.close1').on('click', function(c) {
-											$('.rem1').fadeOut('slow', function(c) {
-												$('.rem1').remove();
-											});
-										});
-									});
+									
+					
+									
 								</script>
 							</td>
 						</tr>
-
 						<!--quantity-->
 						<script>
+							
+							
+							$('.close1').on('click', function() {
+								//alert();
+								 $(this).fadeOut('slow', function() {
+									this.parentNode.parentNode.parentNode.remove();
+								});
+							});
+							
+							
 							$('.value-plus').on('click', function() {
 								var divUpd = $(this).parent().find('.value'),
 									newVal = parseInt(divUpd.text(), 10) + 1;
+								
+								
 								divUpd.text(newVal);
 							});
 							$('.value-minus').on('click', function() {

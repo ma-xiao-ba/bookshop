@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bs.mapper.UserMapper">
+	<select id="login" resultType="int" parameterType="User">
+		select count(*) r from t_user
+		where
+			u_name=#{uname} and
+			u_pwd=#{upwd} and
+			u_role=#{urole}
+	</select>
+</mapper>
