@@ -16,17 +16,14 @@ public class BookServiceImpl implements BookService{
 	@Autowired
 	private BookMapper bookMapper; 
 	public List<BookTypeVO> queryHottestBooks() {
-		// TODO Auto-generated method stub
 		return bookMapper.queryHottestBooks();
 	}
 
 	public List<BookTypeVO> queryLatestBooks() {
-		// TODO Auto-generated method stub
 		return bookMapper.queryLatestBooks();
 	}
 
 	public void modify(Book book) {
-		// TODO Auto-generated method stub
 		bookMapper.modify(book);
 	}
 
@@ -50,6 +47,34 @@ public class BookServiceImpl implements BookService{
 		// TODO Auto-generated method stub
 		return bookMapper.queryBooksByName(bname);
 	}
+
+	public boolean addBook(Book book) {
+		boolean flag=false;
+		try {
+			bookMapper.addBook(book);
+			System.out.println(book.toString());
+			flag = true;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return flag;
+	}
+
+	@Override
+	public void changeBookSales(Integer bsales, Integer bid) {
+		// TODO Auto-generated method stub
+		bookMapper.changeBookSales(bsales, bid);
+	}
+
+	@Override
+	public void changeStock(Book book) {
+		bookMapper.changeStock(book);
+		
+	}
+
+
+
+
 
 
 }

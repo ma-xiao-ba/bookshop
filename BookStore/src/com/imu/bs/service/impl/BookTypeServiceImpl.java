@@ -18,5 +18,29 @@ public class BookTypeServiceImpl implements BookTypeService {
 		// TODO Auto-generated method stub
 		return bookTypeMapper.quaryBookType();
 	}
+	public boolean modifyBookType(BookType bookType) {
+		boolean flag = false;
+		try {
+			bookTypeMapper.modifyBookType(bookType);
+			flag = true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
 
+	public boolean addBookType(BookType bookType) {
+		boolean flag = false;
+		try {
+			bookTypeMapper.addbBookType(bookType);
+			flag = true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+	
+	//admin
+	
+	
 }

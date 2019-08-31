@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.imu.bs.bean.Cart;
+import com.imu.bs.bean.User;
 import com.imu.bs.mapper.CartMapper;
 import com.imu.bs.service.CartService;
 
@@ -17,17 +18,15 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	@RequestMapping("/addCart")
-	public String addCart(String uname,Integer bid,Integer cnumber,HttpSession session){
-		try {
-			uname=new String(uname.getBytes("ISO-8859-1"),"utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public String addCart(Integer bid,Integer cnumber,HttpSession session){
+		User user = (User) session.getAttribute("user");
+		if(user==null) {
+			return "login";
 		}
 		Cart cart = new Cart();
 		cart.setBid(bid);
 		cart.setCnumber(cnumber);
-		cart.setUname(uname);
+		cart.setUname(user.getUname());
 		cartService.addCart(cart);
 		return "index";
 	}

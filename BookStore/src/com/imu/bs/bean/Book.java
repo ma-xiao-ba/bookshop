@@ -1,6 +1,17 @@
 package com.imu.bs.bean;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Book {
+	@Override
+	public String toString() {
+		return "Book [b_sales=" + b_sales + ", bauthor=" + bauthor
+				+ ", bcontent=" + bcontent + ", bid=" + bid + ", bimage="
+				+ bimage + ", bisbn=" + bisbn + ", bname=" + bname
+				+ ", bprice=" + bprice + ", bpublisher=" + bpublisher
+				+ ", bregdt=" + bregdt + ", bstock=" + bstock + ", btid="
+				+ btid + ", file=" + file + "]";
+	}
 	private Integer bid;
 	private String bisbn;
 	private String bname;
@@ -13,6 +24,7 @@ public class Book {
 	private String bcontent;
 	private String bregdt;
 	private Integer b_sales;
+	private MultipartFile file;
 	public Integer getBid() {
 		return bid;
 	}
@@ -86,6 +98,12 @@ public class Book {
 	}
 	public void setB_sales(Integer bSales) {
 		b_sales = bSales;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	
 }

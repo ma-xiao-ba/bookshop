@@ -19,8 +19,11 @@ public class ShoppingCartController {
 	private ShoppingCartService shoppingCartService;
 	@RequestMapping("/queryShoppingCarts")
 	public String queryShoppingCarts(HttpSession session){
-		
-		session.setAttribute("shoppingCarts", shoppingCartService.queryShoppingCarts("zhangsan"));
+		if(session.getAttribute("user")==null) {
+			return "login";
+		}
+		User user=(User) session.getAttribute("user");
+		session.setAttribute("shoppingCarts", shoppingCartService.queryShoppingCarts(user.getUname()));
 		return "cart";
 	}
 	@RequestMapping("/updateShoppingCarts")

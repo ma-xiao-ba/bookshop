@@ -13,4 +13,7 @@ public interface BookService {
 	public Book queryBookById(Integer bid);
 	public List<BookTypeVO> queryBooksByType(String btname);
 	public List<BookTypeVO> queryBooksByName(String bname);
+	public boolean addBook(Book book);
+	public void changeBookSales(Integer bsales,Integer bid);
+	public void changeStock(Book book);
 }

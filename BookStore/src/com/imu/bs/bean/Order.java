@@ -8,6 +8,7 @@ public class Order {
 	private Integer ostate;
 	private String omark;
 	private String uname;
+	private String uphone;
 	public Integer getOid() {
 		return oid;
 	}
@@ -49,6 +50,12 @@ public class Order {
 	}
 	public void setUname(String uname) {
 		this.uname = uname;
+	}
+	public String getUphone() {
+		return uphone;
+	}
+	public void setUphone(String uphone) {
+		this.uphone = uphone;
 	}
 	
 }

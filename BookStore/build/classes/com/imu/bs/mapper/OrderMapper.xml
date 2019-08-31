@@ -40,4 +40,42 @@
 		where
 			od.b_id=b.b_id and od.o_isbn=#{0}
 	</select>
+	
+	<!-- admin -->
+	<select id="queryOrders" resultType="Order">
+		select o_id oid,
+			o_isbn oisbn,
+			o_addr oaddr,
+			o_date odate,
+			o_state ostate,
+			o_mark omark,
+			o.u_name uname,
+			u_phone uphone
+		from orders o,users u
+		where
+			o.u_name=u.u_name
+	</select>
+	<update id="modifyOrder" parameterType="Order">
+		update orders
+		<set>
+			o_state="1"
+		</set>
+		<where>
+			o_isbn=#{oisbn}
+		</where>
+	</update>
+	<select id="queryOrderDetail" resultType="OrderBookVO" parameterType="Order">
+		select b_image bimage,
+			b_name bname,
+			b_author bauthor,
+			b_publisher bpublisher,
+			bt_name btname,
+			b_content bcontent,
+			od_number odnumber,
+			b_price bprice
+		from books,booktypes,orderdetails
+		where #{oisbn}=orderdetails.o_isbn and
+			orderdetails.b_id=books.b_id and
+			books.bt_id=booktypes.bt_id
+	</select>
 </mapper>

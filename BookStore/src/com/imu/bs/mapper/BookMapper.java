@@ -13,4 +13,7 @@ public interface BookMapper {
 	public Book queryBookById(Integer bid);
 	public List<BookTypeVO> queryBooksByType(String btname);
 	public List<BookTypeVO> queryBooksByName(String bname);
+	public void addBook(Book book);
+	public void changeBookSales(Integer bsales,Integer bid);
+	public void changeStock(Book book);
 }

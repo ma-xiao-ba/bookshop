@@ -50,7 +50,26 @@
 				<div class="clearfix"></div>
 			</form>
 		</div>
+		<div class="col-md-3 header-right footer-bottom">
+					<ul>
+						<c:if test="${user!=null}">
+							<div style="width:130px;height:33px;position:relative;float:left;margin-top:5px;margin-left:10px">
+							
+								<li style="float: left">
+								欢迎：${user.uname}<a href="logout.action">注销</a>
+								</li>
 
+							</div>
+						
+						</c:if>
+						<c:if test="${user==null}">
+							<li>
+								<a href="login.jsp" class="use1" ><span>Login</span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 		<div class="clearfix"></div>
 	</div>
 </div>
@@ -107,7 +126,7 @@
 					<h3>
 						<div class="total">
 							<i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-							<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> 件)</div>
+						</div>
 					</h3>
 				</a>
 				<p><a href="queryShoppingCarts.action" class="simpleCart_empty">购物车</a></p>
@@ -197,68 +216,5 @@
 </div>
 <!-- //版权 -->
 
-
-<!-- 登录 -->
-			<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content modal-info">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-						</div>
-						<div class="modal-body modal-spa">
-							<div class="login-grids">
-								<div class="login">
-									<div class="login-bottom">
-										<h3>注册</h3>
-										<form>
-											<div class="sign-up">
-												<h4>用户名:</h4>
-												<input type="text" value="用户名" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '用户名';}" required="">	
-											</div>
-											<div class="sign-up">
-												<h4>密码 :</h4>
-												<input type="password" value="Password" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}" required="">
-												
-											</div>
-											<div class="sign-up">
-												<h4>Re-type Password :</h4>
-												<input type="password" value="Password" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}" required="">
-												
-											</div>
-											<div class="sign-up">
-												<input type="submit" value="注册" >
-											</div>
-											
-										</form>
-									</div>
-									<div class="login-right">
-										<h3>登录</h3>
-										<form>
-											<div class="sign-in">
-												<h4>用户名 :</h4>
-												<input type="text" value="账号" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '用户名';}" required="">	
-											</div>
-											<div class="sign-in">
-												<h4>密码 :</h4>
-												<input type="password" value="Password" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Password';}" required="">
-												<a href="#">忘记密码?</a>
-											</div>
-											<div class="single-bottom">
-												<input type="checkbox"  id="brand" value="">
-												<label for="brand"><span></span>记住我.</label>
-											</div>
-											<div class="sign-in">
-												<input type="submit" value="登录" >
-											</div>
-										</form>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-<!-- //登录 -->
 </body>
 </html>

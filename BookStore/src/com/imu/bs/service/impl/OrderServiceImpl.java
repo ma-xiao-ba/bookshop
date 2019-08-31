@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.imu.bs.bean.Order;
 import com.imu.bs.bean.ShoppingCart;
+import com.imu.bs.bean.vo.OrderBookVO;
 import com.imu.bs.mapper.OrderMapper;
 import com.imu.bs.service.OrderService;
 @Service
@@ -29,5 +30,25 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		return orderMapper.queryOrderByIsbn(oisbn);
 	}
+	
+	//admin
+	
+	public boolean modifyOrder(Order order) {
+		boolean flag = false;
+		try {
+			orderMapper.modifyOrder(order);
+			flag = true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return flag;
+	}
 
+	public List<Order> queryOrders() {
+		return orderMapper.queryOrders();
+	}
+
+	public List<OrderBookVO> queryOrderDetail(Order order) {
+		return orderMapper.queryOrderDetail(order);
+	}
 }

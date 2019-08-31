@@ -5,10 +5,14 @@
 
 <mapper namespace="com.imu.bs.mapper.UserMapper">
 	<select id="login" resultType="int" parameterType="User">
-		select count(*) r from t_user
+		select count(*) r from users
 		where
 			u_name=#{uname} and
-			u_pwd=#{upwd} and
+			u_password=#{upwd} and
 			u_role=#{urole}
 	</select>
+	<insert id="register" parameterType="User">
+		insert into users(u_name,u_password,u_realname,u_phone,u_role,u_mark) values(
+			#{uname},#{upwd},#{urealname},#{uphone},#{urole},#{umark})
+	</insert>
 </mapper>

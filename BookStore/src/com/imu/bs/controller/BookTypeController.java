@@ -16,8 +16,19 @@ public class BookTypeController {
 
 	@Autowired
 	private BookTypeService bookTypeService;
-	@RequestMapping("/quaryBookType")
-	public void quaryBookType(HttpSession session){
+	@RequestMapping("/queryBookType")
+	public String quaryBookType(HttpSession session){
 		session.setAttribute("bookType", bookTypeService.quaryBookType());
+		return "booktypemanage";
+	}
+	@RequestMapping("/modifyBookType")
+	public String modifyBookType(BookType bookType){
+		bookTypeService.modifyBookType(bookType);
+		return "redirect:/queryBookType.action";
+	}
+	@RequestMapping("/addbooktype")
+	public String addBookType(BookType bookType){
+		bookTypeService.addBookType(bookType);
+		return "redirect:/queryBookType.action";
 	}
 }

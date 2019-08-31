@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>管理员端</title>
+<title>我的订单</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -51,103 +51,6 @@ function hideURLbar() {
 
 
 
-
-<script type="text/javascript" src="js/Popt.js">
-	
-</script>
-<script type="text/javascript" src="js/city.json.js">
-	
-</script>
-<script type="text/javascript" src="js/citySet.js">
-	
-</script>
-
-<style type="text/css">
-._citys {
-	width: 450px;
-	display: inline-block;
-	border: 2px solid #eee;
-	padding: 5px;
-	position: relative;
-}
-
-._citys span {
-	color: #05920a;
-	height: 15px;
-	width: 15px;
-	line-height: 15px;
-	text-align: center;
-	border-radius: 3px;
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	border: 1px solid #05920a;
-	cursor: pointer;
-}
-
-._citys0 {
-	width: 95%;
-	height: 34px;
-	line-height: 34px;
-	display: inline-block;
-	border-bottom: 2px solid #05920a;
-	padding: 0px 5px;
-	font-size: 14px;
-	font-weight: bold;
-	margin-left: 6px;
-}
-
-._citys0 li {
-	display: inline-block;
-	line-height: 34px;
-	font-size: 15px;
-	color: #888;
-	width: 80px;
-	text-align: center;
-	cursor: pointer;
-}
-
-._citys1 {
-	width: 100%;
-	display: inline-block;
-	padding: 10px 0;
-}
-
-._citys1 a {
-	width: 83px;
-	height: 35px;
-	display: inline-block;
-	background-color: #f5f5f5;
-	color: #666;
-	margin-left: 6px;
-	margin-top: 3px;
-	line-height: 35px;
-	text-align: center;
-	cursor: pointer;
-	font-size: 12px;
-	border-radius: 5px;
-	overflow: hidden;
-}
-
-._citys1 a:hover {
-	color: #fff;
-	background-color: #05920a;
-}
-
-.AreaS {
-	background-color: #05920a !important;
-	color: #fff !important;
-}
-</style>
-
-
-
-
-
-
-
-
-
 </head>
 <body>
 	<!--header-bot -->
@@ -172,7 +75,26 @@ function hideURLbar() {
 					<div class="clearfix"></div>
 				</form>
 			</div>
+			<div class="col-md-3 header-right footer-bottom">
+					<ul>
+						<c:if test="${user!=null}">
+							<div style="width:130px;height:33px;position:relative;float:left;margin-top:5px;margin-left:10px">
+							
+								<li style="float: left">
+								欢迎：${user.uname}<a href="logout.action">注销</a>
+								</li>
 
+							</div>
+						
+						</c:if>
+						<c:if test="${user==null}">
+							<li>
+								<a href="login.jsp" class="use1" ><span>Login</span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -235,8 +157,6 @@ function hideURLbar() {
 						<h3>
 							<div class="total">
 								<i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-								<span class="simpleCart_total"></span> (<span
-									id="simpleCart_quantity" class="simpleCart_quantity"></span> 件)
 							</div>
 						</h3>
 					</a>
@@ -339,7 +259,7 @@ function hideURLbar() {
 												</c:if>
 												<c:if test="${ods.ostate==1}">
 													<a
-														href="changeState.action?ostate=2&oid=${ods.oid}&uname=zhangsan"
+														href="changeState.action?ostate=2&oid=${ods.oid}"
 														class="btn btn-warning">确认收货</a>
 												</c:if>
 												<c:if test="${ods.ostate==2}">

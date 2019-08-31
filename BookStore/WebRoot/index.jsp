@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>主页</title>
+<title>商城</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -51,7 +51,26 @@
 				<div class="clearfix"></div>
 			</form>
 		</div>
+		<div class="col-md-3 header-right footer-bottom">
+					<ul>
+						<c:if test="${user!=null}">
+							<div style="width:130px;height:33px;position:relative;float:left;margin-top:5px;margin-left:10px">
+							
+								<li style="float: left">
+								欢迎：${user.uname}<a href="logout.action">注销</a>
+								</li>
 
+							</div>
+						
+						</c:if>
+						<c:if test="${user==null}">
+							<li>
+								<a href="login.jsp" class="use1" ><span>Login</span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 		<div class="clearfix"></div>
 	</div>
 </div>
@@ -96,7 +115,7 @@
 									</div>
 								</ul>
 							</li>
-							<li class=" menu__item"><a class="menu__link" href="queryOrder.action?uname=zhangsan">查看订单</a></li>
+							<li class=" menu__item"><a class="menu__link" href="queryOrder.action">查看订单</a></li>
 						</ul>
 					</div>
 				</div>
@@ -108,7 +127,7 @@
 					<h3>
 						<div class="total">
 							<i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-							<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> 件)</div>
+							</div>
 					</h3>
 				</a>
 				<p><a href="queryShoppingCarts.action" class="simpleCart_empty">购物车</a></p>
@@ -188,19 +207,19 @@
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
 												
-													<a href="bookDetail.action?bid=${hottestBook.bid}" class="link-product-add-cart">Quick View</a>
+													<a href="bookDetail.action?bid=${hottestBook.bid}" class="link-product-add-cart">查看详情</a>
 												</div>
 											</div>
 											<span class="product-new-top">Hot</span>
 											
 									</div>
 									<div class="item-info-product ">
-										<h4><a href="single.jsp">${hottestBook.bname}</a></h4>
+										<h4><a href="bookDetail.action?bid=${hottestBook.bid}">${hottestBook.bname}</a></h4>
 										<div class="info-product-price">
 											<span class="item_price">${hottestBook.bprice}</span>
 										</div>
 											
-										<a onclick="addcart(${hottestBook.bid})" class="item_add single-item hvr-outline-out button2">Add to cart</a>									
+										<a onclick="addcart(${hottestBook.bid})" class="item_add single-item hvr-outline-out button2">加入购物车</a>									
 									</div>
 								</div>
 							</div>
@@ -222,18 +241,18 @@
 										<img src="${latestBook.bimage}" alt="" class="pro-image-back">
 											<div class="men-cart-pro">
 												<div class="inner-men-cart-pro">
-													<a href="single.jsp" class="link-product-add-cart">查看详情</a>
+													<a href="bookDetail.action?bid=${latestBook.bid}" class="link-product-add-cart">查看详情</a>
 												</div>
 											</div>
 											<span class="product-new-top">New</span>
 											
 									</div>
 									<div class="item-info-product ">
-										<h4><a href="single.jsp">${latestBook.bname}</a></h4>
+										<h4><a href="bookDetail.action?bid=${latestBook.bid}">${latestBook.bname}</a></h4>
 										<div class="info-product-price">
 											<span class="item_price">${latestBook.bprice}</span>
 										</div>
-										<a onclick="addcart(${hottestBook.bid})" class="item_add single-item hvr-outline-out button2">加入购物车</a>									
+										<a onclick="addcart(${latestBook.bid})" class="item_add single-item hvr-outline-out button2">加入购物车</a>									
 									</div>
 								</div>
 							</div>

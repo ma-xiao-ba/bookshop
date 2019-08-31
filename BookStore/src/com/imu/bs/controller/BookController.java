@@ -1,8 +1,11 @@
 package com.imu.bs.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,12 +19,14 @@ import com.imu.bs.bean.BookTypeVO;
 import com.imu.bs.bean.BookType;
 import com.imu.bs.service.BookService;
 import com.imu.bs.service.BookTypeService;
+import com.imu.bs.tool.UtilTool;
 @Controller
 public class BookController {
 	@Autowired
 	private BookService bookService;
 	@Autowired
 	private BookTypeService bookTypeService;
+	
 	@RequestMapping("/queryHottestBooks")
 	public String queryHottestBooks(HttpSession session){
 		session.setAttribute("queryHottestBooks", bookService.queryHottestBooks());
@@ -116,5 +121,48 @@ public class BookController {
         session.setAttribute("pageIndex",pageIndex);
 		
 		return "bookList";
+	}
+	@RequestMapping("/adminQueryBook")
+	public String adminQueryBook(HttpSession session){
+		session.setAttribute("booktype", bookTypeService.quaryBookType());
+		session.setAttribute("books", bookService.queryBooksByType("."));
+		return "bookmanage";
+	}
+	@RequestMapping("/addBook")
+	public String addbook(HttpServletRequest request,Book book)
+			throws IllegalStateException, IOException {
+		  //�������ݿ��·��
+		  String sqlPath = null; 
+		  //�����ļ�����ı���·��
+	      String localPath="D:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\BookStore\\images\\book\\";
+	      //���� �ļ���
+	      String filename=null;  
+	      if(!book.getFile().isEmpty()){  
+	          //����uuid��Ϊ�ļ�����  
+	          String uuid = UUID.randomUUID().toString().replaceAll("-","");  
+	          //����ļ����ͣ������ж��������ͼƬ����ֹ�ϴ���  
+	          String contentType=book.getFile().getContentType();  
+	          //����ļ���׺�� 
+	          String suffixName=contentType.substring(contentType.indexOf("/")+1);
+	          //�õ� �ļ���
+	          filename=uuid+"."+suffixName; 
+	          System.out.println("filename:"+filename);
+	          //�ļ�����·��
+	          System.out.println("·����"+localPath+filename);
+	          book.getFile().transferTo(new File(localPath+filename));  
+	      }
+
+	      sqlPath = "images/book/"+filename;
+	      book.setBimage(sqlPath);
+	      book.setBisbn(UtilTool.getOnumber());
+	      System.out.println(book.toString());
+	      bookService.addBook(book);
+	      System.out.println("sql:"+sqlPath);
+		  return "redirect:/adminQueryBook.action";
+	}
+	@RequestMapping("/changeStock")
+	public String changeStock(Book book) {
+		bookService.changeStock(book);
+		return "redirect:/adminQueryBook.action";
 	}
 }

@@ -144,7 +144,26 @@ $(function() {
 				<div class="clearfix"></div>
 			</form>
 		</div>
+		<div class="col-md-3 header-right footer-bottom">
+					<ul>
+						<c:if test="${user!=null}">
+							<div style="width:130px;height:33px;position:relative;float:left;margin-top:5px;margin-left:10px">
+							
+								<li style="float: left">
+								欢迎：${user.uname}<a href="logout.action">注销</a>
+								</li>
 
+							</div>
+						
+						</c:if>
+						<c:if test="${user==null}">
+							<li>
+								<a href="login.jsp" class="use1" ><span>Login</span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 		<div class="clearfix"></div>
 	</div>
 </div>
@@ -201,7 +220,7 @@ $(function() {
 					<h3>
 						<div class="total">
 							<i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-							<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> 件)</div>
+						</div>
 					</h3>
 				</a>
 				<p><a href="queryShoppingCarts.action" class="simpleCart_empty">购物车</a></p>

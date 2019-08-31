@@ -48,5 +48,26 @@
      	b_name bname,b_author bauthor,b_publisher bpublisher,b_price bprice,b_image bimage,b_stock bstock,
      	b_content bcontent,b_regdt bregdt,b_sales bsales from booktypes t,books b where t.bt_id=b.bt_id and b.b_name REGEXP #{0}
 	</select>
-	
+	<insert id="addBook" parameterType="Book">
+		insert into books(b_isbn,b_name,b_author,b_publisher,b_price,bt_id,b_image,b_stock,b_content)
+		values(#{bisbn},#{bname},#{bauthor},#{bpublisher},#{bprice},#{btid},#{bimage},#{bstock},#{bcontent})
+	</insert>
+	<update id="changeBookSales" parameterType="Integer">
+		update books 
+			<set>
+				b_stock=b_stock-#{0},b_sales=b_sales+#{0}
+			</set>
+			<where>
+				b_id=#{1}     
+			</where> 
+	</update>
+	<update id="changeStock" parameterType="Book">
+		update books
+			<set>
+				b_stock=#{bstock}
+			</set>
+			<where>
+				b_isbn=#{bisbn}
+			</where>
+	</update>
 </mapper>

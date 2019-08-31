@@ -1,6 +1,12 @@
 package com.imu.bs.bean;
 
 public class User {
+	@Override
+	public String toString() {
+		return "User [uid=" + uid + ", umark=" + umark + ", uname=" + uname
+				+ ", uphone=" + uphone + ", upwd=" + upwd + ", urealname="
+				+ urealname + ", uregdt=" + uregdt + ", urole=" + urole + "]";
+	}
 	private Integer uid;//用户编号
 	private String uname;//用户帐号
 	private String upwd;//用户密码

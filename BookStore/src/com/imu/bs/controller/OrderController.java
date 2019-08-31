@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.imu.bs.bean.Order;
 import com.imu.bs.bean.OrderDetail;
 import com.imu.bs.bean.ShoppingCart;
+import com.imu.bs.bean.User;
+import com.imu.bs.service.BookService;
 import com.imu.bs.service.OrderDetailService;
 import com.imu.bs.service.OrderService;
 import com.imu.bs.service.ShoppingCartService;
@@ -27,6 +29,8 @@ public class OrderController {
 	private ShoppingCartService shoppingCartService;
 	@Autowired
 	private OrderDetailService orderDetailService;
+	@Autowired
+	private BookService bookService;
 
 	@RequestMapping("/getCartId")
 	public String getCartId(HttpServletRequest request) {
@@ -53,23 +57,20 @@ public class OrderController {
 	@RequestMapping("/settle")
 	public String settle(String addr, String detail, String mark,
 			HttpSession session) {
-		try {
-			addr =new String(addr.getBytes("ISO-8859-1"),"utf-8");
-			detail =new String(detail.getBytes("ISO-8859-1"),"utf-8");
+			addr =new String(addr);
+			detail =new String(detail);
 			addr+=" "+detail;
-			mark =new String(mark.getBytes("ISO-8859-1"),"utf-8");
-			
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+			mark =new String(mark);
+
 		System.out.println(addr);
 		System.out.println(mark);
 		List<ShoppingCart> scs=(List<ShoppingCart>) session.getAttribute("scs");
+		User user = (User) session.getAttribute("user");
 		Order order = new Order();
 		OrderDetail orderDetail = new OrderDetail();
 		order.setOaddr(addr);
 		order.setOmark(mark);
-		order.setUname("zhangsan");
+		order.setUname(user.getUname());
 		String oNumber = UtilTool.getOnumber();
 		order.setOisbn(oNumber);
 		orderService.addOrder(order);
@@ -79,44 +80,34 @@ public class OrderController {
 			orderDetail.setBid(scs.get(i).getBid());
 			orderDetailService.addOrderDetail(orderDetail);
 			shoppingCartService.removeShoppingCart(scs.get(i).getCid());
+			bookService.changeBookSales(scs.get(i).getCnumber(), scs.get(i).getBid());
 		}
-		return "redirect:/queryShoppingCarts.action?uname="+"zhangsan";
+		return "redirect:/queryShoppingCarts.action";
 	}
 	
 	@RequestMapping("/queryOrder")
-	public String queryOrder(String uname,HttpSession session){
-		try {
-			uname = new String(uname.getBytes("iso-8895-1"),"utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public String queryOrder(HttpSession session){
+		User user = (User) session.getAttribute("user");
+		if(user==null) {
+			return "login";
 		}
-		session.setAttribute("orders", orderService.queryOrder(uname));
+		session.setAttribute("orders", orderService.queryOrder(user.getUname()));
 		return "order";
 	}
 	
 	@RequestMapping("/changeState")
-	public String changeState(Integer ostate,Integer oid,String uname,HttpSession session){
+	public String changeState(Integer ostate,Integer oid,HttpSession session){
 		orderService.changeState(ostate, oid);
-		try {
-			
-			uname = new String(uname.getBytes("iso-8895-1"),"utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		session.setAttribute("orders", orderService.queryOrder(uname));
+		User user = (User) session.getAttribute("user");
+		session.setAttribute("orders", orderService.queryOrder(user.getUname()));
 		return "order";
 	}
 	
 	@RequestMapping("/queryOrderByIsbn")
 	public String queryOrderByIsbn(String oisbn,HttpSession session){
-		try {
-			oisbn = new String(oisbn.getBytes("iso-8895-1"),"utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+			oisbn = new String(oisbn);
+
 		System.out.println(oisbn);
 		List<ShoppingCart> l = orderService.queryOrderByIsbn(oisbn);
 		for(int i=0;i<l.size();i++){
@@ -124,5 +115,26 @@ public class OrderController {
 		}
 		session.setAttribute("orderDetail", l);
 		return "orderDetail";
+	}
+	
+	//admin
+	
+	@RequestMapping("/queryOrders")
+	public String queryOrders(HttpSession session){
+		session.setAttribute("orders", orderService.queryOrders());
+		return "ordermanage";
+	}
+	@RequestMapping("/modifyOrder")
+	public String modifyOrder(HttpServletRequest request,Order order){
+		if(orderService.modifyOrder(order)){
+			return "redirect:/queryOrders.action";
+		}else
+		return null;
+	}
+	@RequestMapping("/queryOrderDetail")
+	public String queryOrderDetail(HttpSession session,Order order){
+		session.setAttribute("orderdetails",orderService.queryOrderDetail(order));
+		System.out.println(orderService.queryOrderDetail(order));
+		return "orderdetailadmin";
 	}
 }

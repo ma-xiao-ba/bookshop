@@ -28,7 +28,7 @@
 	   
 	订单表[orders]
 	o_id     	| int(4)			订单编号主键
-	o_isbn      | varchar(13)		订单编号
+	o_isbn      | varchar(32)		订单编号
 	o_addr     	| varchar(100)		收货地址
 	o_date   	| timestamp			日期
 	o_mark   	| varchar(50)		备注
@@ -45,7 +45,7 @@
 	
     订单明细表[orderdetails]
 	od_number	|int(3)				购物项数量
-	o_isbn		|varchar(13)		购物项所属订单
+	o_isbn		|varchar(32)		购物项所属订单
 	b_id		|int(8)				购物项所属图书
 	
 	

@@ -17,11 +17,28 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login(User user,HttpSession session){
 		if(userService.login(user)){
-			session.setAttribute("user",user);
-			return "ok";
+			if(user.getUrole()==1){
+				session.setAttribute("user",user);
+				return "redirect:/adminQueryBook.action";
+			}else{
+				session.setAttribute("user",user);
+				return "first";
+			}
 		}else{
 			return "error";
 		}
 		
+	}
+	
+	@RequestMapping("/register")
+	public String register(User user){
+		System.out.println(user.toString());
+		userService.register(user);
+		return "first";
+	}
+	@RequestMapping("/logout")
+	public String loginout(HttpSession session){
+		session.invalidate();
+		return "first";
 	}
 }
