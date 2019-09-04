@@ -7,10 +7,11 @@ public class UtilTool {
 	   {
 		   //得到系统时间的微秒数
 		   long L=new Date().getTime();
+		   String l=String.valueOf(L).substring(1,9);
 		   //得到随机数，截取需要的字符串
 		   double d=Math.random();
-		   String s=String.valueOf(d);
-		   return L+s.substring(4, 9);
+		   String s=String.valueOf(d).substring(4,9);
+		   return (l+s);
 	   }
 	   public static void main(String[] args) {
 		System.out.println(getOnumber());

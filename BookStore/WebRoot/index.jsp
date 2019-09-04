@@ -65,7 +65,7 @@
 						</c:if>
 						<c:if test="${user==null}">
 							<li>
-								<a href="login.jsp" class="use1" ><span>Login</span>
+								<a href="login.jsp" class="use1" >
 								</a>
 							</li>
 						</c:if>
@@ -108,7 +108,6 @@
 												<c:forEach items="${queryBookType}" var="bt">
 													<li><a href="queryBooksByType.action?btname=${bt.btname}">${bt.btname}</a></li>
 												</c:forEach>
-												<li><a href="">其他</a></li>
 											</ul>
 										</div>
 										<div class="clearfix"></div>

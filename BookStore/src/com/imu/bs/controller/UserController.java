@@ -32,7 +32,6 @@ public class UserController {
 	
 	@RequestMapping("/register")
 	public String register(User user){
-		System.out.println(user.toString());
 		userService.register(user);
 		return "first";
 	}

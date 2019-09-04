@@ -55,7 +55,7 @@ public class BookServiceImpl implements BookService{
 			System.out.println(book.toString());
 			flag = true;
 		} catch (Exception e) {
-			e.getMessage();
+			System.err.println(e.getMessage());
 		}
 		return flag;
 	}

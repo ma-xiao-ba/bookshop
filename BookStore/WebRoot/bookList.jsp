@@ -68,7 +68,7 @@
 						</c:if>
 						<c:if test="${user==null}">
 							<li>
-								<a href="login.jsp" class="use1" ><span>Login</span>
+								<a href="login.jsp" class="use1" >
 								</a>
 							</li>
 						</c:if>

@@ -74,7 +74,7 @@
 						</c:if>
 						<c:if test="${user==null}">
 							<li>
-								<a href="login.jsp" class="use1" ><span>Login</span>
+								<a href="login.jsp" class="use1" >
 								</a>
 							</li>
 						</c:if>
@@ -211,7 +211,7 @@
 										<p>${books.bisbn}</p>
 									</td>
 									<td style="vertical-align: middle !important;">${books.btname}</td>
-									<td style="vertical-align: middle !important;"><img src="${books.bimage}" /> </td>
+									<td style="vertical-align: middle !important;" width="90px" height="120px"><img src="${books.bimage}" /> </td>
 									<td style="vertical-align: middle !important;">${books.bstock}</td>
 									<td style="vertical-align: middle !important;">${books.bprice}</td>
 									<td style="vertical-align: middle !important;">

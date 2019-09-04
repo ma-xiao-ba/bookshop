@@ -15,7 +15,6 @@
 <!-- pignose css -->
 <link href="css/pignose.layerslider.css" rel="stylesheet" type="text/css" media="all" />
 
-
 <!-- //pignose css -->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- js -->
@@ -198,7 +197,7 @@ $(function() {
 					<script type="text/javascript">
 						function addcart(){
 							var number=document.getElementById("number");
-							window.location.href='addCart.action?'+'bid='+${book.bid}+'&cnumber='+number.value;
+							window.location.href='addCart.action?bid='+${book.bid}+'&cnumber='+number.value;
 						}
 					</script>
 					

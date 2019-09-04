@@ -129,35 +129,34 @@ public class BookController {
 		return "bookmanage";
 	}
 	@RequestMapping("/addBook")
-	public String addbook(HttpServletRequest request,Book book)
-			throws IllegalStateException, IOException {
-		  //�������ݿ��·��
+	public String addbook(HttpServletRequest request,Book book) throws IllegalStateException, IOException {
+
 		  String sqlPath = null; 
-		  //�����ļ�����ı���·��
-	      String localPath="D:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\BookStore\\images\\book\\";
-	      //���� �ļ���
+
+	      String localPath="C:\\app\\Tomcat 8.0\\webapps\\BookStore\\images\\book\\";
+	      String localPath1="E:\\Java_project\\eclipse\\BookStore\\WebRoot\\images\\book\\";
+
 	      String filename=null;  
-	      if(!book.getFile().isEmpty()){  
-	          //����uuid��Ϊ�ļ�����  
+	      if(!book.getFile().isEmpty()){    
 	          String uuid = UUID.randomUUID().toString().replaceAll("-","");  
-	          //����ļ����ͣ������ж��������ͼƬ����ֹ�ϴ���  
+	 
 	          String contentType=book.getFile().getContentType();  
-	          //����ļ���׺�� 
+
 	          String suffixName=contentType.substring(contentType.indexOf("/")+1);
-	          //�õ� �ļ���
+
 	          filename=uuid+"."+suffixName; 
 	          System.out.println("filename:"+filename);
-	          //�ļ�����·��
-	          System.out.println("·����"+localPath+filename);
-	          book.getFile().transferTo(new File(localPath+filename));  
+	          
+	         // System.out.println(localPath+filename);
+	          book.getFile().transferTo(new File(localPath+filename));
 	      }
 
 	      sqlPath = "images/book/"+filename;
 	      book.setBimage(sqlPath);
 	      book.setBisbn(UtilTool.getOnumber());
-	      System.out.println(book.toString());
+	     // System.out.println(book.toString());
 	      bookService.addBook(book);
-	      System.out.println("sql:"+sqlPath);
+	     // System.out.println("sql:"+sqlPath);
 		  return "redirect:/adminQueryBook.action";
 	}
 	@RequestMapping("/changeStock")
