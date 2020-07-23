@@ -1,0 +1,15 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+## ide
+**/.idea
+*.iml
+
+## backend
+**/target
+**/logs
+
+
+## front
+**/*.lock
