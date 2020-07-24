@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.simple.bookshop.mapper.ShoppingCartMapper">
+    <select id="queryShoppingCarts" resultType="ShoppingCart" parameterType="String">
+        select
+        b.b_id bid,
+        c_id cid,
+        b_image bimage,
+        c_number cnumber,
+        b_name bname,
+        b_price bprice
+        from books b,cart c
+        where
+        c.b_id=b.b_id and
+        c.u_name=#{0}
+    </select>
+    <update id="updateShoppingCarts" parameterType="ShoppingCart">
+        update cart
+        <set>
+            c_number=#{cnumber}
+        </set>
+        <where>c_id=#{cid}</where>
+    </update>
+    <delete id="removeShoppingCart" parameterType="int">
+        delete from cart
+        where c_id=#{0}
+    </delete>
+    <select id="queryCart" parameterType="int" resultType="ShoppingCart">
+        select b_price bprice,b.b_id bid,c_number cnumber,c_id cid from cart c,books b
+        where c.b_id=b.b_id and c.c_id=#{0}
+    </select>
+</mapper>
